@@ -64,3 +64,6 @@ target/
 
 # Django static files
 staticfiles/
+
+# Environment variables used in production
+.env
