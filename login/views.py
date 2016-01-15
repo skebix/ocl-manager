@@ -1,9 +1,9 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.views import generic
 
-def index(request):
-    template = loader.get_template('login/index.html')
-    return HttpResponse(template.render(request))
-def services(request):
-	template = loader.get_template('login/services.html')
-	return HttpResponse(template.render(request))
+
+class IndexView(generic.TemplateView):
+    template_name = 'login/index.html'
+
+
+class ServicesView(generic.TemplateView):
+    template_name = 'login/services.html'

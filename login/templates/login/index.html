@@ -14,14 +14,15 @@
 
     <div class="login-card">
     <h1>OCL-MANAGER</h1><br>
-  <form>
+        <form action="{% url 'login:services' %}">
     <input type="text" name="user" placeholder="Nombre de usuario">
     <input type="password" name="pass" placeholder="Contraseña">
     <input type="submit" name="login" class="login login-submit" value="login">
   </form>
     
   <div class="login-help">
-    <a href="#">Solicitar usuario de ingreso</a> • <a href="#">¿Olvido su usuario o contraseña?</a>
+      <a href="{% url 'login:services' %}">Solicitar usuario de ingreso</a> • • <a href="#">¿Olvido su usuario o
+      contraseña?</a>
   </div>
 </div>
 
