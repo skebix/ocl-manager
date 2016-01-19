@@ -18,11 +18,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('login.urls')),
-    url(r'^', include('career_develop.urls')),
-    url(r'^', include('gap_calculation.urls')),
+    url(r'^login/', include('login.urls')),
+    url(r'^career_development/', include('career_develop.urls')),
+    url(r'^gap_calculation/', include('gap_calculation.urls')),
     url(r'^', include('ocl_manager.urls')),
-    url(r'^', include('performance_eval.urls')),
+    url(r'^performance_evaluation/', include('performance_eval.urls')),
     url(r'^manager/', include('ocl_manager.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls)
 ]
