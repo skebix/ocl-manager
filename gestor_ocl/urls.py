@@ -17,11 +17,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from login import views as login_views
-
 urlpatterns = [
     url(r'^', include('login.urls')),
     url(r'^manager/', include('ocl_manager.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^services/', login_views.ServicesView.as_view())
 ]

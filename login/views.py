@@ -1,9 +1,9 @@
-from django.views import generic
+from django.shortcuts import render
 
 
-class IndexView(generic.TemplateView):
-    template_name = 'login/index.html'
+def index(request):
+    return render(request, 'login/index.html')
 
 
-class ServicesView(generic.TemplateView):
-    template_name = 'login/services.html'
+def services(request):
+    return render(request, 'login/services.html')
