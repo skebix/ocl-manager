@@ -1,9 +1,8 @@
 from django.shortcuts import render
 
 
-def index(request):
-    return render(request, 'login/index.html')
-
+def main(request):
+    return render(request, 'login/main.html')
 
 def services(request):
     return render(request, 'login/services.html')

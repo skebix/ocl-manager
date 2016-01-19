@@ -19,6 +19,10 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('login.urls')),
+    url(r'^', include('career_develop.urls')),
+    url(r'^', include('gap_calculation.urls')),
+    url(r'^', include('ocl_manager.urls')),
+    url(r'^', include('performance_eval.urls')),
     url(r'^manager/', include('ocl_manager.urls')),
     url(r'^admin/', admin.site.urls),
 ]
