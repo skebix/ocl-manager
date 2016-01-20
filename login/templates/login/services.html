@@ -6,80 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       {% load staticfiles %}
-      <link rel="stylesheet" href="{% static 'login/login_style.css' %}"/>
+      <link rel="stylesheet" href="{% static 'login/css/login_style.css' %}"/>
+      <link href="{% static 'login/css/bootstrap.min.css' %}" rel="stylesheet">
       <title>OCL-MANAGER Services</title>
-    <!-- Bootstrap -->
-      <link href="{% static 'gestor_ocl/bootstrap.min.css' %}" rel="stylesheet">
   </head>
   <body>
+  <!-- Barra de navegacion superior -->
   <nav class="navbar navbar-default">
       <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                       data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
+                  <span class="sr-only">Configurar navegación</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Brand</a>
+              <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                  <li><a href="#">Link</a></li>
+                  <li><a href="{% url 'main' %}">Inicio <span class="sr-only">(current)</span></a></li>
+                  <li class="active"><a href="#">Servicios</a></li>
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                         aria-expanded="false">Dropdown <span class="caret"></span></a>
+                         aria-expanded="false">Manejo <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Configuración</a></li>
+                          <li><a href="#">Ontología</a></li>
+                          <li><a href="#">Empleados</a></li>
                           <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                          <li><a href="#">Servicios de evaluación</a></li>
                           <li role="separator" class="divider"></li>
-                          <li><a href="#">One more separated link</a></li>
+                          <li><a href="#">Servicios de carrera</a></li>
                       </ul>
                   </li>
               </ul>
               <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search">
+                      <input type="text" class="form-control" placeholder="Buscar">
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+                  </button>
               </form>
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Link</a></li>
-                  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                         aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                      </ul>
-                  </li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
               </ul>
           </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
   </nav>
-    <h1>Servicios</h1>
-    <div id='cssmenu'>
-        <ul>
-            <li class='active'><a href='{% url 'main' %}'><span>Inicio</span></a></li>
-            <li><a href='#'><span>Servicios</span></a></li>
-            <li><a href='#'><span>Usuarios</span></a></li>
-            <li class='last'><a href='#'><span>Ontologia</span></a></li>
-        </ul>
-    </div>
+  <div class="services-container">
+      <h1 class="maintitle">Servicios</h1>
+      <div class="well"> Evaluación de desempeño <span class="glyphicon glyphicon-equalizer"></span></div>
+      <div class="well"> Calculo de la brecha <span class="glyphicon glyphicon-tasks"></span></div>
+  </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../../../gestor_ocl/static/js/bootstrap.min.js"></script>
+  <script src={% static "login/js/bootstrap.min.js" %}></script>
   </body>
 </html>

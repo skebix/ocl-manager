@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
       <title>Log-in</title>
       <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
-      <link rel="stylesheet" href="../static/login/css/login_style.css">
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'login/css/login_style.css' %}"/>
+      <link href="{% static 'login/css/bootstrap.min.css' %}" rel="stylesheet">
   </head>
 
   <body>
-    <div class="login-card">
+  <div class="login-card" class="well">
         <h1>OCL-MANAGER</h1><br>
         <form action="services">
             <input type="text" name="user" placeholder="Nombre de usuario">
@@ -20,7 +22,7 @@
             <a href="#">¿Olvido su usuario o contraseña?</a>
         </div>
     </div>
-    <div class="login-card">
+  <div class="login-card" class="well">
         <h1>Servicios disponibles</h1><br>
         <ul>
             <li><a href="{% url 'services' %}">Gestión de Usuarios</a></li>
