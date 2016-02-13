@@ -10,7 +10,8 @@ store = plugin.get("SQLAlchemy", Store)(identifier=ident)
 g = Graph(store, identifier=ident)
 dburi = Literal('postgresql+psycopg2://skydaddy:tesis2015@localhost:5432/ocl_manager')
 g.open(dburi, create=False)
-
+g.parse('Adm-Publi.rdfs')
+g.parse('Adm-Publi.rdf')
 
 #seccion de queries
 

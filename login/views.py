@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from django.shortcuts import render
 from django.http import HttpResponse
 from . import models
 
 
 def index(request):
-    dbgraph = models.db_starter()
+    dbgraph = models.db_starter(0)
     qres = dbgraph.query(
         """SELECT ?x
            WHERE {
@@ -17,3 +18,7 @@ def index(request):
     n = n + 1
     output = ', '.join([q for q in string])
     return HttpResponse("Las raíces del árbol ontológico son %s." % output)
+
+
+def onto_viewer(request):
+    return render(request, 'login/onto_viewer.html')

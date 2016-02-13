@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^/onto', views.onto_viewer, name='onto_viewer')
 ]
