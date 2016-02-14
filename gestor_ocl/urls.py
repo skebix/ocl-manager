@@ -20,5 +20,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^gestor/', include('ocl_manager.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('login.urls')),
+    url(r'^login/', include('login.urls')),
 ]

@@ -5,6 +5,29 @@
     <title>Visor de la ontología</title>
 </head>
 <body>
-
+<table border="1">
+    <tr>
+        <th>Resultados de la consulta:</th>
+            {% for text in query1 %}
+                <tr><td>{{ text }}</td></tr>
+            {% endfor %}
+        <th>El contenido de la ontología es:</th>
+            {% for text in content %}
+                <tr><td>{{ text }}</td></tr>
+            {% endfor %}
+        <th>Los Perfiles de Cargo son:</th>
+            {% for text in perfiles %}
+                    <tr><td>{{ text }}</td></tr>
+            {% endfor %}
+    </tr>
+    <tr>
+        <th>Los tipos de cargos son:</th>
+        <td>
+            {% for text in cargos %}
+                <tr><td>{{ text }}</td></tr>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
 </body>
 </html>

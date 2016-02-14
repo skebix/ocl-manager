@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from rdflib import plugin, Graph, Literal, URIRef
 from rdflib.store import Store
@@ -17,3 +18,29 @@ def db_starter(pgmaker):
     return g
 
 
+def getClassesQuery(option, graph):
+    g = graph
+    n = 0
+    result = []
+    mom_class = option
+    query_classes = g.query(
+        """SELECT ?x WHERE {?x rdfs:subClassOf """ + mom_class + """ .}""")
+    for row in query_classes:
+        result.append(row[0].partition("#")[2])
+        if result[n] == mom_class:
+            result.remove(mom_class)
+        n += 1
+    return result
+
+
+def getInstancesQuery(option, graph):
+    g = graph
+    result = []
+    mom_class = option
+    query_classes = g.query(
+        """SELECT ?nombre WHERE {
+        ?x rdf:type """ + mom_class + """ .
+        ?x kb:Denominacion_especifica ?nombre .}""")
+    for row in query_classes:
+        result.append(row[0])
+    return result
