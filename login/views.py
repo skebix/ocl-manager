@@ -14,8 +14,8 @@ def onto_viewer(request):
     query1 = rdfQueryPower.getClassesQuery("rdfs:Resource", dbgraph)
     query2 = rdfQueryPower.getClassesQuery("kb:Administración_Pública", dbgraph)
     query3 = rdfQueryPower.getClassesQuery("kb:Cargo", dbgraph)
-    query4 = rdfQueryPower.getInstancesQuery("kb:Perfil_Cargo", dbgraph)
-    query5 = rdfQueryPower.getDetailsQuery("kb:Perfil_Cargo", dbgraph)
+    query4 = rdfQueryPower.getInstancesQuery("kb:Genérica", dbgraph)
+    query5 = rdfQueryPower.getDetailsQuery("kb:Roles", "kb:Descripcion", dbgraph)
     return render(request, 'login/onto_viewer.html', {
         "query1": query1,
         "content": query2,

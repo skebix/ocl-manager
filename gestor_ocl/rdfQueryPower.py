@@ -6,17 +6,7 @@ from rdflib.namespace import RDF, RDFS
 
 ###### SECCIÓN DE METADATA DE RDF, ES DECIR, LO ESENCIAL #####
 
-rdfs_resource = "rdfs:Resource"
-rdfs_class = "rdfs:Class"
-rdfs_literal = "rdfs:Literal"
-rdfs_datatype = "rdfs:Datatype"
-rdf_property = "rdfs:Property"  # Esto es una instancia de rdfs:Class
-rdfs_range = "rdfs:range"
-rdfs_domain = "rdfs:domain"
-rdf_type = "rdf:type"  # Instancia de rdf:Property
-rdfs_subclassof = "rdfs:subClassOf"
-rdfs_label = "rdfs:label"
-rdfs_comment = "rdfs:comment"
+predicados = ["rdfs:Resource", "rdfs:Class", "rdfs:Literal", "rdfs:Datatype" , "rdfs:Property", "rdfs:range", "rdfs:domain" , "rdf:type", "rdfs:subClassOf", "rdfs:label", "rdfs:comment"]
 
 ###### FIN DE LA SECCIÓN DE METADATA DE RDF ######
 
@@ -38,12 +28,15 @@ def getInstancesQuery(option, graph):
     g = graph
     result = []
     n = 0
+    pc = 0
     mom_class = option
     query_classes = g.query(
-        """SELECT DISTINCT ?x WHERE {
-        ?x """ + rdf_type + """ """ + mom_class + """ .
-        ?x """ + rdfs_label + """ ?y .
-        } ORDER BY ?x""")
+        """SELECT DISTINCT ?nombre WHERE {
+        ?x rdf:type """ + mom_class + """ .
+        ?x ?nombre ?y .
+        FILTER (?nombre!=rdfs:label) .
+        FILTER (?nombre!=rdf:type) .
+        }""")
     for row in query_classes:
         result.append(row[0].partition("#")[2])
         if result[n] == mom_class:
@@ -52,18 +45,18 @@ def getInstancesQuery(option, graph):
     return result
 
 
-def getDetailsQuery(option, graph):
+def getDetailsQuery(dad, son, graph):
     g = graph
     result = []
-    mom_class = option
+    bigleaf = dad
+    minileaf = son
     query_classes = g.query(
         """SELECT DISTINCT ?y WHERE {
-        ?x """ + rdf_type + """ """ + mom_class + """ .
-        ?x """ + rdfs_label + """ kb:Adm-Publi_Class10000  .
-        ?x """ + rdfs_range + """ ?y .
+        ?x rdf:type """ + bigleaf + """ .
+        ?x """ + minileaf + """ ?y .
         }""")
     for row in query_classes:
-        result.append(row[0].partition("#")[2])
+        result.append(row[0])
     return result
 
 
@@ -75,6 +68,7 @@ def getClassesQuery(option, graph):
     query_classes = g.query(
         """SELECT ?x WHERE {
         ?x rdfs:subClassOf """ + mom_class + """ .
+        FILTER (?x!=kb:KB_ROOT) .
         }""")
     for row in query_classes:
         result.append(row[0].partition("#")[2])
