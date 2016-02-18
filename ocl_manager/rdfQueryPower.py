@@ -1,8 +1,5 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from rdflib import plugin, Graph, Literal, URIRef
-from rdflib.store import Store
-from rdflib.namespace import RDF, RDFS
 
 ###### SECCIÓN DE METADATA DE RDF, ES DECIR, LO ESENCIAL #####
 

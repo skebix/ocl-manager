@@ -1,9 +1,6 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rdflib import plugin, Graph, Literal, URIRef
-from rdflib.store import Store
-
 
 def querylvl1(option, graph):
     g = graph

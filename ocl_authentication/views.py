@@ -1,9 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-
 from django.contrib.auth import authenticate
-from django.contrib.auth.views import login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import login
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -11,7 +9,7 @@ def home_page(request):
     return render(request, 'home_page.html')
 
 
-def homemade_login(request, redirect_to):
+def homemade_login(request):
     """
     Displays the login form and handles the login action.
     :param request: HttpRequest object
@@ -31,4 +29,5 @@ def homemade_login(request, redirect_to):
         form = AuthenticationForm(request)
 
     return render(request, 'registration/login.html', {'form': form})
+
 

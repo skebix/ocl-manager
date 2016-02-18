@@ -7,11 +7,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 import os
-
 from os.path import join, dirname, abspath
+
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
 from dotenv import load_dotenv
+from whitenoise.django import DjangoWhiteNoise
 
 dotenv_path = join(dirname(dirname(abspath(__file__))), '.env')
 load_dotenv(dotenv_path)

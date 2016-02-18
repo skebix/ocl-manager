@@ -1,3 +1,7 @@
+# Register your models here.
+
 from django.contrib import admin
 
-# Register your models here.
+from ocl_authentication.models import Employee
+
+admin.site.register(Employee)

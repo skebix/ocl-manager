@@ -1,13 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.conf import settings
-from rdflib import plugin, Graph, Literal, URIRef
-from rdflib.store import Store
-from os.path import join
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
 
 import os
+from os.path import join
 
-from ocl_manager import FinalQuerier
+from django.conf import settings
+from django.http import HttpResponse
+from django.shortcuts import render
+from rdflib import plugin, Graph, Literal, URIRef
+from rdflib.store import Store
+
 
 class rdfQueryPower:
     """

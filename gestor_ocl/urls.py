@@ -24,5 +24,4 @@ urlpatterns = [
     url(r'', include('ocl_authentication.urls')),
     url(r'^gestor/', include('ocl_manager.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', include('login.urls')),
 ]
