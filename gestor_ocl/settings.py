@@ -13,17 +13,19 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 from os.path import join, dirname, abspath
 
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(dirname(abspath(__file__))), '.env')
+load_dotenv(dotenv_path)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(abspath(__file__))
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y%*s2&y2pf)z^hso=1j55&c3p!sblo9=yu1e#-@-)c*n!5)4yh'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -34,13 +36,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'ocl_authentication.apps.OclAuthenticationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
+    'ocl_manager.apps.OclManagerConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,10 +81,16 @@ WSGI_APPLICATION = 'gestor_ocl.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config()}
-
-# Enable Connection Pooling (if desired)
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get("DATABASE_ENGINE"),
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'HOST': os.environ.get("DATABASE_HOST"),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
+        'PORT': os.environ.get("DATABASE_PORT"),
+        'USER': os.environ.get("DATABASE_USER"),
+    }
+}
 
 
 # Password validation
@@ -106,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'America/Caracas'
 
@@ -130,3 +139,6 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'

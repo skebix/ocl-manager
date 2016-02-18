@@ -17,7 +17,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from ocl_authentication import views
+
 urlpatterns = [
+    url(r'^$', views.home_page, name='home'),
+    url(r'', include('ocl_authentication.urls')),
     url(r'^gestor/', include('ocl_manager.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', include('login.urls')),

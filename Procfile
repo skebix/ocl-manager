@@ -1,1 +1,0 @@
-web: gunicorn gestor_ocl.wsgi --log-file -
