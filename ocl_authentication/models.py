@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
-from ocl_manager.rdfQueryPower import *
+from ocl_manager.sparkqueries import *
 from ocl_manager.views import open_store
 
 
@@ -20,10 +20,10 @@ class HomemadeUser():
 
 class Employee(models.Model):
     graph = open_store('rdf')
-    raw_choices = getInstancesQuery('rdfs:Resource', graph)
+    raw_choices = querylvl1("kb:Dependencias", graph)
     institution_type_choices = []
     for stuff in raw_choices:
-        institution_type_choices.append(stuff)
+       institution_type_choices.append((stuff, stuff))
     job_pos = models.CharField(max_length=200)
     entry_date = models.DateTimeField()
     institution_type = models.CharField(max_length=200, choices=institution_type_choices)

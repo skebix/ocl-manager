@@ -1,13 +1,28 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
+from rdflib import plugin, Graph, Literal, URIRef
+from rdflib.store import Store
+from rdflib.namespace import RDF, RDFS
 
-###### SECCIÓN DE METADATA DE RDF, ES DECIR, LO ESENCIAL #####
 
-predicados = ["rdfs:Resource", "rdfs:Class", "rdfs:Literal", "rdfs:Datatype" , "rdfs:Property", "rdfs:range", "rdfs:domain" , "rdf:type", "rdfs:subClassOf", "rdfs:label", "rdfs:comment"]
+def querylvl1(option, graph):
+    g = graph
+    n = 0
+    result = []
+    mom_class = option
+    query_classes = g.query(
+        """SELECT ?x WHERE {
+        ?x rdfs:subClassOf """ + mom_class + """ .
+        FILTER (?x!=kb:KB_ROOT) .
+        }""")
+    for row in query_classes:
+        result.append(row[0].partition("#")[2])
+        if result[n] == mom_class:
+            result.remove(mom_class)
+        n += 1
+    return result
 
-###### FIN DE LA SECCIÓN DE METADATA DE RDF ######
-
-def getInstancesQuery(option, graph):
+def querylvl2(option, graph):
     g = graph
     result = []
     n = 0
@@ -27,8 +42,7 @@ def getInstancesQuery(option, graph):
         n += 1
     return result
 
-
-def getDetailsQuery(dad, son, graph):
+def querylvl3(dad, son, graph):
     g = graph
     result = []
     bigleaf = dad
@@ -40,22 +54,4 @@ def getDetailsQuery(dad, son, graph):
         }""")
     for row in query_classes:
         result.append(row[0])
-    return result
-
-
-def getClassesQuery(option, graph):
-    g = graph
-    n = 0
-    result = []
-    mom_class = option
-    query_classes = g.query(
-        """SELECT ?x WHERE {
-        ?x rdfs:subClassOf """ + mom_class + """ .
-        FILTER (?x!=kb:KB_ROOT) .
-        }""")
-    for row in query_classes:
-        result.append(row[0].partition("#")[2])
-        if result[n] == mom_class:
-            result.remove(mom_class)
-        n += 1
     return result
