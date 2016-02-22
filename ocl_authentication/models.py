@@ -25,7 +25,7 @@ class Employee(models.Model):
     institution_type_choices = []
     for insttype in choices1:
         institution_type_choices.append((insttype, insttype))
-    choices2 = querylvl3("kb:Dependencias", "kb:Alcaldia", graph)
+    choices2 = querylvl3("kb:Alcaldía", "kb:Nombre_Dependencia", graph)
     institution_name_choices = []
     for instname in choices2:
         institution_name_choices.append((instname, instname))
