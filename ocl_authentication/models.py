@@ -19,21 +19,22 @@ class HomemadeUser():
 
 
 class Employee(models.Model):
+    institution_type_choices = []
+    institution_name_choices = []
     # filler functions using sparkql queries
     graph = open_store('rdf')
     choices1 = querylvl1("kb:Dependencias", graph)
     institution_type_choices = []
     for insttype in choices1:
         institution_type_choices.append((insttype, insttype))
-    choices2 = querylvl3("kb:Alcaldía", "kb:Nombre_Dependencia", graph)
-    institution_name_choices = []
-    for instname in choices2:
-        institution_name_choices.append((instname, instname))
+    c2 = querylvl3("kb:Dependencias", "kb:Nombre_Dependencia", graph)
+    for k in c2:
+        institution_name_choices.append((k, k))
     # Variables
     job_pos = models.CharField(max_length=200)
     entry_date = models.DateTimeField()
     institution_type = models.CharField(max_length=200, choices=institution_type_choices)
-    institution_name = models.CharField(max_length=200, choices=institution_name_choices)
+    institution_name = models.CharField(max_length=300, choices=institution_name_choices)
     #ci_supervisor = models.ForeignKey()
     user_type = models.CharField(max_length=100)
 
